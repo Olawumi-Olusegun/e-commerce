@@ -1,0 +1,111 @@
+
+header {
+    /* width: calc(100vw - 18rem); */
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+
+nav {
+    display: flex;
+    border-bottom: 2px solid #f3fef3;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    z-index: 999;
+    
+}
+
+input {
+    padding: 12px 20px;
+    border: none;
+    background-color: #f7f6f6;
+    outline: none;
+    margin-right: 20px;
+    border-radius: 5px;
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid transparent;
+    transition: all ease 300ms;
+    font-size: 16px;
+    color: rgb(102, 101, 101);
+}
+
+::placeholder {
+    font-size: 16px;
+    color: rgb(187, 187, 187);
+}
+
+input:focus-within {
+    border: 1px solid rgb(187, 187, 187);
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.nav-icons {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 2px;
+}
+
+.close-btn {
+    display: none;
+}
+
+
+.icon-btn {
+    height: 2.3rem;
+    width: 2.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: all ease 300ms;
+}
+
+.icon-btn:hover {
+    background-color: rgb(240, 237, 237);
+}
+
+.icon-btn:focus, .icon-btn:visited {
+    border: 1px solid rgb(187, 187, 187);
+}
+
+@media (max-width: 600px) {
+    .close-btn {
+        display: block;
+        color: white;
+        height: max-content;
+        width: max-content;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        transition: all ease 300ms;
+        background-color: transparent;
+    }
+
+    .close-btn:hover {
+        background-color: rgb(240, 237, 237);
+    }
+    
+    .close-btn:focus, .close-btn:visited {
+        border: 1px solid rgb(187, 187, 187);
+    }
+}

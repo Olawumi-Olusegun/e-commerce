@@ -1,0 +1,18 @@
+.recommended-container {
+    padding: 0.8rem;
+}
+.recommended-title {
+    margin: 1rem 0;
+}
+
+.recommended-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.recommended-flex .btns:focus, .btns:hover {
+    transition: all ease 500ms;
+}
