@@ -1,4 +1,3 @@
-
 import { useCombinedStore } from '../../store';
 import Button from './../Button';
 import "./Recommended.css";
@@ -15,7 +14,6 @@ const Recommended = () => {
       <div className="recommended-flex">
         <Button onClickHandler={handleButtonClick} value="" title="All Products" />
         <Button onClickHandler={handleButtonClick} value="Nike" title="Nike" />
-        <Button onClickHandler={handleButtonClick} value="Flats" title="Flats" />
         <Button onClickHandler={handleButtonClick} value="Adidas" title="Adidas" />
         <Button onClickHandler={handleButtonClick} value="Puma" title="Puma" />
         <Button onClickHandler={handleButtonClick} value="Vans" title="Vans" />

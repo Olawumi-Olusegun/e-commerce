@@ -19,9 +19,7 @@ const Navigation = () => {
   };
 
 
-  const handleSidebarMenu = () => {
-    setOpenSideMenu(true);
-  }
+  const handleSidebarMenu = () => setOpenSideMenu(true);
 
   return (
     <header>

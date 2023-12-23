@@ -1,6 +1,6 @@
 
 header {
-    /* width: calc(100vw - 18rem); */
+    width: 100%;
 }
 
 .nav-container {
@@ -37,7 +37,7 @@ input {
 }
 
 ::placeholder {
-    font-size: 16px;
+    font-size: 14px;
     color: rgb(187, 187, 187);
 }
 

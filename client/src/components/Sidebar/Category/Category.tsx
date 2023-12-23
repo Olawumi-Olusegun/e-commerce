@@ -4,7 +4,6 @@ import Input from './../../Input';
 import { useCombinedStore } from '../../../store';
 
 
-
 const Category = () => {
 
   const [checkedValue, setCheckedValue] = useState("");

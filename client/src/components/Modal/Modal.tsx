@@ -11,12 +11,12 @@ export default function Modal({children}: PropsWithChildren) {
 
   return (
     <>
-        <div className={`modal ${openSideMenu ? "show-modal" : "hide-modal"}`} >
-            <span title="" className='menu-btn position-close-btn' onClick={() => setOpenSideMenu(false)}>
+      <div className={`modal ${openSideMenu ? "show-modal" : "hide-modal"}`} >
+          <span title="" className='menu-btn position-close-btn' onClick={() => setOpenSideMenu(false)}>
             <MdClose className="nav-icons" color="black" />
-            </span>
-        </div>
-        {children}
+          </span>
+      </div>
+      {children}
     </>
   )
 }

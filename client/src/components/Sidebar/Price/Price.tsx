@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useCombinedStore } from "../../../store";
 
 
-
 const Price = () => {
 
   const [checkedValue, setCheckedValue] = useState("");
