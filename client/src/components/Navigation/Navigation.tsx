@@ -4,6 +4,7 @@ import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 import "./Navigation.css";
 import { useCombinedStore } from "../../store";
 import { MdMenu } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
 
@@ -36,7 +37,7 @@ const Navigation = () => {
         <div className='profile-container'>
           <a className='icon-btn' href="#" > <FiHeart className="nav-icons" /> </a>
           <a className='icon-btn' href="#" > <AiOutlineShoppingCart className="nav-icons" /> </a>
-          <a className='icon-btn' href="#" > <AiOutlineUserAdd className="nav-icons" /> </a>
+          <Link to={`/signin`} className='icon-btn' > <AiOutlineUserAdd className="nav-icons" /> </Link>
         </div>
 
       </nav>
