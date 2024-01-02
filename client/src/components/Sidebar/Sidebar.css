@@ -41,7 +41,7 @@
         display: flex;
         flex-direction: column;
         z-index: 10;
-        transition: all linear 500ms;
+        transition: all ease 500ms;
     }
 
     .open-side-menu {
@@ -49,6 +49,7 @@
         overflow: initial;
         background-color: white;
         margin-left: 0;
+        padding-left: 2rem;
     }
 
     .close-side-menu {

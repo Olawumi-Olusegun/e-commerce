@@ -1,9 +1,128 @@
 
-.container {
-    padding: 1rem;
+.form-container {
+    padding: 0 1rem;
     width: 100%;
     min-height: 100vh;
     display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+.form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: flex-start;
+    gap: 10px;
+    position: relative;
+    flex: 2;
+    padding: 0 10rem;
+    
+}
+
+.form-logo {
+    position: relative;
+    flex: 1;
+    display: flex;
     align-items: center;
-    justify-content: center;
+   border-left: 1px solid lightgray;
+   
+}
+
+.form-logo h4  {
+    background-color: white;
+    z-index: 2;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: -20%;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.form-label, .btn {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    color: gray;
+}
+
+ input {
+    display: block;
+    width: 100%;
+    padding: 11px 15px;
+    color: gray;
+}
+
+.half-width {
+    flex: 1 1 calc(50% - 7.5px);
+}
+
+.full-width {
+    width: 100%;
+    height: max-content;
+}
+
+.btn {
+    background-color: rgb(224, 224, 224);
+    color: darkslategrey;
+    border: none;
+    transition: all 300ms ease;
+}
+.btn:disabled {
+    cursor: no-drop;
+}
+.btn:hover {
+    background-color: lightgrey;
+}
+
+.error-message {
+    color: rgb(219, 106, 106);
+    font-size: 13px;
+    padding: 5px 0;
+}
+
+@media screen and (max-width: 800px) {
+   
+    .form-container {
+        padding: 1rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        row-gap: 2rem;
+    }
+
+    .form {
+        padding: 1rem;
+        width: 100%;
+        border-right:none;
+    }
+
+    .form-logo {
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border-left: none;
+    }
+
+    .form-logo h4  {
+        background-color: transparent;
+        z-index: 0;
+        padding: 10px;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 }

@@ -38,7 +38,7 @@ export const createProductSlice: StateCreator<ProductStore> = (set) => ({
                 product.company === selectedCategory
                 );
                 return { products: filteredProducts }
-            }else if(!value) {
+            }else if(!state.selectedCategory) {
                 return { products: filteredProducts }
             }
             return state;
@@ -50,6 +50,7 @@ export const createProductSlice: StateCreator<ProductStore> = (set) => ({
         set({query: newValue});
       
         set((state) => {
+            
         let filteredProducts = state.products;
         const filteredItems = data?.filter((product: Product) => product.title.toLowerCase().indexOf(newValue.toLowerCase()) !== -1);
         

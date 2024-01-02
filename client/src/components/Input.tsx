@@ -19,7 +19,8 @@ const Input = (props: any) => {
         ? { backgroundImage: "linear-gradient(#e66465, #9198e5)", border: "1px solid transparent" }
         : { backgroundColor: color, border: "1px solid transparent" }
       }>
-      </span> {title}
+      </span> 
+      {title}
   </label>
   )
 }
