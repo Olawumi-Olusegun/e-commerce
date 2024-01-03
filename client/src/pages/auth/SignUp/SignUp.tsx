@@ -95,7 +95,7 @@ const handleFormSubmit = async (SignupData: SignUpType) => {
 
         <div className="form-row">
           <div className="full-width">
-            <button className="btn" disabled={disabled}> {disabled ? "Submitting..." : "Sign in" } </button>
+            <button className="btn" disabled={disabled}> {isSubmitting ? "Submitting..." : "Sign in" } </button>
             
           </div>
         </div>
@@ -104,10 +104,10 @@ const handleFormSubmit = async (SignupData: SignUpType) => {
       
         <div className="form-row">
             <div className="half-width">
-              <button disabled={disabled} type="button" className="btn">Github</button>
+              <button disabled={isSubmitting} type="button" className="btn">Github</button>
             </div>
             <div className="half-width">
-              <button disabled={disabled} type="button" className="btn">Google</button>
+              <button disabled={isSubmitting} type="button" className="btn">Google</button>
             </div>
         </div>
         

@@ -12,7 +12,7 @@
 }
 
 .sidebar { grid-area: sidebar; }
-.navigation { grid-area: navigation; border-bottom: 1px solid #f7f6f6; }
+.navigation { grid-area: navigation;  }
 .recommended { grid-area: recommended; }
 .products { grid-area: products; }
 .footer { grid-area: footer; }
