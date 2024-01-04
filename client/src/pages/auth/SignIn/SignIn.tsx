@@ -57,6 +57,7 @@ const handleFormSubmit = async (SignInData: SignInType) => {
              errors={errors}
              type="text"
              placeholder="Email..."
+             id="email"
             />
 
           </div>
@@ -77,6 +78,7 @@ const handleFormSubmit = async (SignInData: SignInType) => {
              rules={{ required: "Password is required" }}
              errors={errors}
              type="password"
+             id="password"
              placeholder="Password..."
              autoComplete="false"
             />

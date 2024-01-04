@@ -12,7 +12,7 @@ type SignUpType = z.infer<typeof SignUpSchema>;
 
 export default function SignUp() {
 
-  const { register, control, handleSubmit, reset, formState: { errors, isDirty, isValid, isSubmitting } } = useForm<SignUpType>({
+  const { control, handleSubmit, reset, formState: { errors, isDirty, isValid, isSubmitting } } = useForm<SignUpType>({
     defaultValues: {
       email: "",
       password: "",
@@ -58,6 +58,7 @@ const handleFormSubmit = async (SignupData: SignUpType) => {
              errors={errors}
              type="text"
              placeholder="Name..."
+             id="name"
             />
           </div>
         </div>
@@ -72,6 +73,7 @@ const handleFormSubmit = async (SignupData: SignUpType) => {
              errors={errors}
              type="text"
              placeholder="Email..."
+             id="email"
             />
           </div>
         </div>
@@ -87,6 +89,7 @@ const handleFormSubmit = async (SignupData: SignUpType) => {
              type="password"
              placeholder="Password..."
              autoComplete="false"
+             id="password"
             />
           </div>
         </div>
