@@ -1,11 +1,13 @@
+import { isValidObjectId } from "mongoose";
 import { NextFunction, Request, Response } from "express";
 import UserModel from "../models/user.model";
 import { RequestWithUserId } from "../type";
-import { isValidObjectId } from "mongoose";
 
 
 export const findAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+    
     try {
+
         const users = await UserModel.find({});
         
         const allUsers = users.length > 0 ? users.map((user) => {
@@ -19,7 +21,7 @@ export const findAllUsers = async (req: Request, res: Response, next: NextFuncti
 
         return res.status(200).json({success: true, message: "All users", users: allUsers })
     } catch (error) {
-        return res.status(500).json({success: false, message: error?.message })
+        return res.status(500).json({success: false, message: error })
     }
 }
 
@@ -50,7 +52,7 @@ export const getUserById = async (req: RequestWithUserId, res: Response, next: N
 
         return res.status(200).json({success: true, message: "User", user: userData })
     } catch (error) {
-        return res.status(500).json({success: false, message: error?.message })
+        return res.status(500).json({success: false, message: error })
     }
 }
 
@@ -96,7 +98,7 @@ export const updateUserById = async (req: RequestWithUserId, res: Response, next
 
         return res.status(200).json({success: true, message: "User", user: userData })
     } catch (error) {
-        return res.status(500).json({success: false, message: error?.message })
+        return res.status(500).json({success: false, message: error })
     }
 }
 
@@ -124,6 +126,6 @@ export const deleteUserById = async (req: RequestWithUserId, res: Response, next
       
         return res.status(200).json({success: true, message: "User deleted", })
     } catch (error) {
-        return res.status(500).json({success: false, message: error?.message })
+        return res.status(500).json({success: false, message: error })
     }
 }

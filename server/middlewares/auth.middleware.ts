@@ -43,11 +43,12 @@ export const authExist = async (req: RequestWithUserId, res: Response, next: Nex
         next();
         
     } catch (error) {
-        return res.status(500).json({success: false, message: error?.message });
+        return res.status(500).json({success: false, message: error });
     }
 }
 
 export const isAdmin = async (req: RequestWithUserId, res: Response, next: NextFunction) => {
+    
     const userId = req.userId;
     
     if(!userId) {

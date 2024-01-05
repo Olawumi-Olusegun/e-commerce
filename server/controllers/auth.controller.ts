@@ -52,7 +52,7 @@ export const signin = async (req: Request, res: Response, next: NextFunction) =>
         return res.status(201).json({success: true, message: "Login successful", userData})
         
     } catch (error) {
-         return res.status(500).json({success: false, message: error?.message })
+         return res.status(500).json({success: false, message: error })
     }
 }
 
@@ -75,7 +75,7 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
         return res.status(201).json({success: true, message: "User created"});
 
     } catch (error) {
-        return res.status(500).json({success: false, message: error?.message })
+        return res.status(500).json({success: false, message: error })
     }
 }
 
