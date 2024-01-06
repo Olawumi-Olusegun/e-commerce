@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from 'zod';
 import { SignInSchema } from "../../../validations/authValidation";
-import "./SignIn.css";
 import TextInput from "../../../components/TextInput";
+import "./SignIn.css";
 
 
 
 type SignInType = z.infer<typeof SignInSchema>;
 
 export default function SignIn() {
+
+  const navigation = useNavigate();
 
   const { control, handleSubmit, reset, formState: { errors, isDirty, isValid, isSubmitting } } = useForm<SignInType>({
     defaultValues: {
@@ -25,11 +27,24 @@ export default function SignIn() {
   
 const handleFormSubmit = async (SignInData: SignInType) => {
         try {
-          console.log({SignInData})
           
+          const response = await fetch('/api/v1/auth', {
+            method: 'POST',
+            body: JSON.stringify(SignInData),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+          
+          const { message } = await response.json();
+
+          if(!response.ok) {
+            console.log(message)
+          }
           reset();
+          navigation('/');
         } catch (error) {
-          
+          console.log(error);
         }
 }
 
