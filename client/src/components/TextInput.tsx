@@ -1,17 +1,16 @@
 import React from 'react';
-import { Controller, RegisterOptions } from 'react-hook-form';
+import { Controller,  RegisterOptions, } from 'react-hook-form';
 
 
-interface TextInputProps {
+interface TextInputProps extends  React.InputHTMLAttributes<HTMLInputElement> {
     control: any;
     name: string;
     label?: string;
     rules: RegisterOptions;
     errors: any;
-    [rest: string]: any;
 }
 
-const TextInput: React.FC<TextInputProps> = ({ control, name, label, rules, errors, ...rest }) => {
+const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({ control, name, label, rules, errors, ...restProps }, ref) => {
  
   return (
     <>
@@ -21,13 +20,13 @@ const TextInput: React.FC<TextInputProps> = ({ control, name, label, rules, erro
     rules={rules}
     name={name}
      render={({field}) => {
-        return <> <input {...field} {...rest} />
+        return <> <input {...field} ref={ref} {...restProps} />
             {errors[name] && <p className="error-message">{errors[name].message}</p>  }
         </>
      }}
     />
   </>
   )
-}
+});
 
 export default TextInput

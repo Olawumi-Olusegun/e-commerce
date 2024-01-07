@@ -74,7 +74,6 @@ const handleFormSubmit = async (SignInData: SignInType) => {
              placeholder="Email..."
              id="email"
             />
-
           </div>
 
           {/* <div className="half-width">
@@ -96,6 +95,7 @@ const handleFormSubmit = async (SignInData: SignInType) => {
              id="password"
              placeholder="Password..."
              autoComplete="false"
+            
             />
           </div>
         </div>
