@@ -1,5 +1,6 @@
 import React from 'react';
-import { Controller,  RegisterOptions, } from 'react-hook-form';
+import { Controller,  FieldErrors,  RegisterOptions, } from 'react-hook-form';
+import { SignInType } from '../pages/auth/SignIn/SignIn';
 
 
 interface TextInputProps extends  React.InputHTMLAttributes<HTMLInputElement> {
@@ -8,10 +9,11 @@ interface TextInputProps extends  React.InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     rules: RegisterOptions;
     errors: any;
+    // errors: FieldErrors<SignInType>
 }
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({ control, name, label, rules, errors, ...restProps }, ref) => {
- 
+
   return (
     <>
     { label && <label className="form-label" htmlFor={name}>{label}</label> }
@@ -21,7 +23,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({ control,
     name={name}
      render={({field}) => {
         return <> <input {...field} ref={ref} {...restProps} />
-            {errors[name] && <p className="error-message">{errors[name].message}</p>  }
+            {errors[name] && <p className="error-message">{errors[name].message}</p>}
         </>
      }}
     />

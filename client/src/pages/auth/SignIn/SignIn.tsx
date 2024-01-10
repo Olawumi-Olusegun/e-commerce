@@ -8,7 +8,7 @@ import "./SignIn.css";
 
 
 
-type SignInType = z.infer<typeof SignInSchema>;
+export type SignInType = z.infer<typeof SignInSchema>;
 
 export default function SignIn() {
 
@@ -33,7 +33,7 @@ const handleFormSubmit = async (SignInData: SignInType) => {
             body: JSON.stringify(SignInData),
             headers: {
               "Content-Type": "application/json"
-            }
+            },
           });
           
           const { message } = await response.json();
@@ -42,7 +42,9 @@ const handleFormSubmit = async (SignInData: SignInType) => {
             console.log(message)
           }
           reset();
+          window.location.reload()
           navigation('/');
+          
         } catch (error) {
           console.log(error);
         }
@@ -57,8 +59,7 @@ const handleFormSubmit = async (SignInData: SignInType) => {
       </div>
 
       <form className="form" onSubmit={handleSubmit(handleFormSubmit)}>
-      
-      
+
       <h2>Signin</h2>
       <p>New here? <Link to="/signup">Sign up for an account.</Link> </p>
         
@@ -76,10 +77,12 @@ const handleFormSubmit = async (SignInData: SignInType) => {
             />
           </div>
 
-          {/* <div className="half-width">
+          {/* 
+          <div className="half-width">
             <label htmlFor="password">Password</label>
             <input type="text" name="password" id="password" placeholder="Password" />
-          </div> */}
+          </div> 
+          */}
 
         </div>
         
