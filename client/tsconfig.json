@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "../../auth/Frontend/src/components/Slider"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

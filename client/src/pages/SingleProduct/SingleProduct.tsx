@@ -1,14 +1,60 @@
+import React, { useState } from "react";
 import { BsFillBagHeartFill } from "react-icons/bs";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import data from "../../db/data";
 import "./SingleProduct.css";
 
 export default function SingleProduct() {
 
+  const navigation = useNavigate();
+
   const { state: { productTitle } } = useLocation();
 
   const product = data.filter((product) => product.title === productTitle);
   const { img, title, star, reviews, newPrice, prevPrice } = product[0];
+
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const [productState, setProductState] = useState({
+    title: title ?? "",
+    price: prevPrice ?? "",
+    size: "",
+    color: "",
+  });
+
+
+  const handleColorChange = (color: string) => {
+    setProductState((prevState) => ({...prevState, color }))
+  }
+
+  const handleSizeChange = (size: string) => {
+    setProductState((prevState) => ({...prevState, size }))
+  }
+
+  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    console.log(productState);
+    try {
+      const response = await fetch(`/api/v2/`, {
+        method: "POST",
+        body: JSON.stringify(productState),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      const { message } = await response.json();
+
+      if(!response.ok) {
+        setResponseMessage(message)
+      }
+     
+      console.log(responseMessage);
+      navigation("/", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="single-product-container">
@@ -31,15 +77,20 @@ export default function SingleProduct() {
         <div className="product-color">
           <h4 className="product-title"> Colors </h4>
           <div className="color-container">
-            <button className="btn" style={{backgroundColor: "green", color: "white"}}>Green</button>
-            <button className="btn" style={{backgroundColor: "red", color: "white"}}>Red</button>
+            <button onChange={() => handleSizeChange("Green".toLocaleLowerCase())} className="btn" style={{backgroundColor: "green", color: "white"}}>Green</button>
+            <button onChange={() => handleSizeChange("Red".toLocaleLowerCase())} className="btn" style={{backgroundColor: "red", color: "white"}}>Red</button>
           </div>
         </div>
         <div className="product-size">
         <h4 className="product-title"> Sizes </h4>
         <div className="size-container">
-          <button className="btn">LG</button>
-          <button className="btn">XXL</button>
+          <button className="btn" onChange={() => handleColorChange("LG".toLocaleLowerCase())}>LG</button>
+          <button className="btn" onChange={() => handleColorChange("XXL".toLocaleLowerCase())}>XXL</button>
+        </div>
+        </div>
+        <div className="product-size">
+        <div className="size-container">
+          <button type="submit" className="btn" onChange={handleSubmit}>Submit</button>
         </div>
         </div>
       </div>
