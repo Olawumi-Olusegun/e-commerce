@@ -7,32 +7,35 @@ export interface Product {
     size: string;
     color: string;
     price: number;
+    quantity: number;
 }
 
 export interface CartStore {
-    products: Product[],
     cartItems: Product[] | [];
     addToCart: (cartItems: Product) => void;
     removeFromCart: (id: string) => void;
+    incrementCart: (id: string) => void;
+    decrementCart: (id: string) => void;
     resetCart: () => void;
 }
 
-export const createCartSlice: StateCreator<CartStore> = (set, get) => ({
-    products: [{
-        id: "",
-        title: "",
-        size: "",
-        color: "",
-        price: 0,
-    }],
-    cartItems: [],
+export const createCartSlice: StateCreator<CartStore> = (set) => ({
+    cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems") || "[]" ) : [],
     addToCart(cartItem) {
         set((state) => {
-            if(state.cartItems.length === 0) {
-                return state;
+            
+            let tempState = [...state.cartItems];
+
+            const findIndex = tempState.findIndex((item) => item.id === cartItem.id);
+
+            if(findIndex >= 0) {
+                tempState[findIndex].quantity += 1;
             }
-            const tempState = [...state.products, cartItem];
-            return { products: tempState };
+
+            cartItem.quantity = 1;
+            tempState.push(cartItem);
+
+            return { cartItems: tempState };
         });
         
     },
@@ -45,18 +48,49 @@ export const createCartSlice: StateCreator<CartStore> = (set, get) => ({
                 return state;
             }
 
-            const tempState = [...state.products];
+            let tempState = [...state.cartItems];
             const findIndex = tempState.findIndex((item) => item.id === id);
-            if(findIndex > 0) {
+            if(findIndex >= 0) {
                 const newProduct = tempState.splice(findIndex, 1);
-                return { products: newProduct };
+                return { cartItems: newProduct };
             }
             return state;
         })
     },
 
-    resetCart() {
-        set({cartItems: []})
+    incrementCart(id) {
+        set((state) => {
+
+            let tempState = [...state.cartItems];
+            const findIndex = tempState.findIndex((item) => item.id === id);
+
+            if(findIndex >= 0) {
+                tempState[findIndex].quantity += 1;
+                return {cartItems: tempState}
+            }
+
+            return state;
+        })
+    },
+    decrementCart(id) {
+        set((state) => {
+
+            let tempState = [...state.cartItems];
+            const findIndex = tempState.findIndex((item) => item.id === id);
+
+            if(findIndex >= 0) {
+
+                if(tempState[findIndex].quantity === 0) {
+                    return { cartItems: tempState }
+                }
+
+                tempState[findIndex].quantity -= 1;
+                return { cartItems: tempState };
+            }
+
+            return state;
+        })
     },
 
-})
+    resetCart: () => set({cartItems: []}),
+});
