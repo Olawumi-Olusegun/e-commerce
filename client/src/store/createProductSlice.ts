@@ -22,7 +22,9 @@ export const createProductSlice: StateCreator<ProductStore> = (set) => ({
 
         let filteredProducts = [...data];
        
-        set({selectedCategory: value});
+        if(value) {
+            set({selectedCategory: value});
+        }
 
         set((state) => {
 
@@ -47,7 +49,9 @@ export const createProductSlice: StateCreator<ProductStore> = (set) => ({
 
     updateValue: (newValue) => {
 
-        set({query: newValue});
+        if(newValue) {
+            set({ query: newValue });
+        }
       
         set((state) => {
             

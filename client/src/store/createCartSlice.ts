@@ -12,7 +12,7 @@ export interface Product {
 
 export interface CartStore {
     cartItems: Product[] | [];
-    addToCart: (cartItems: Product) => void;
+    addToCart: (cartItem: Product) => void;
     removeFromCart: (id: string) => void;
     incrementCart: (id: string) => void;
     decrementCart: (id: string) => void;
@@ -23,7 +23,7 @@ export const createCartSlice: StateCreator<CartStore> = (set) => ({
     cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems") || "[]" ) : [],
     addToCart(cartItem) {
         set((state) => {
-            
+
             let tempState = [...state.cartItems];
 
             const findIndex = tempState.findIndex((item) => item.id === cartItem.id);

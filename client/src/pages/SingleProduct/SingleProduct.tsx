@@ -33,7 +33,7 @@ export default function SingleProduct() {
 
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log(productState);
+    
     try {
       const response = await fetch(`/api/v2/`, {
         method: "POST",
@@ -48,8 +48,7 @@ export default function SingleProduct() {
       if(!response.ok) {
         setResponseMessage(message)
       }
-     
-      console.log(responseMessage);
+
       navigation("/", { replace: true });
     } catch (error) {
       console.log(error);

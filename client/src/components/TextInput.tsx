@@ -10,6 +10,7 @@ interface TextInputProps extends  React.InputHTMLAttributes<HTMLInputElement> {
     rules: RegisterOptions;
     errors: any;
     // errors: FieldErrors<SignInType>
+    // [key: string]: any;
 }
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({ control, name, label, rules, errors, ...restProps }, ref) => {
