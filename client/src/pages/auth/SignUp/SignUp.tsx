@@ -3,9 +3,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from 'zod';
 import {  SignUpSchema } from "../../../validations/authValidation";
-import "./SignUp.css";
 import TextInput from "../../../components/TextInput";
-
+import "./SignUp.css";
 
 
 type SignUpType = z.infer<typeof SignUpSchema>;
@@ -26,11 +25,25 @@ export default function SignUp() {
   
 const handleFormSubmit = async (SignupData: SignUpType) => {
         try {
-          console.log({SignupData})
+
+          const response = await fetch("/api/v1/auth", {
+            method: "POST",
+            body: JSON.stringify(SignupData),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+
+          const { data, message } = await response.json();
+
+          if(!response.ok) {
+            console.log(message)
+          }
           
           reset();
+          console.log(data)
         } catch (error) {
-          
+          console.log(error)
         }
 }
 

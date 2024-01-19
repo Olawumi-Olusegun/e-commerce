@@ -24,18 +24,18 @@ export const createCartSlice: StateCreator<CartStore> = (set) => ({
     addToCart(cartItem) {
         set((state) => {
 
-            let tempState = [...state.cartItems];
+            let copiedCartItems = [...state.cartItems];
 
-            const findIndex = tempState.findIndex((item) => item.id === cartItem.id);
+            const findIndex = copiedCartItems.findIndex((item) => item.id === cartItem.id);
 
             if(findIndex >= 0) {
-                tempState[findIndex].quantity += 1;
+                copiedCartItems[findIndex].quantity += 1;
             }
 
             cartItem.quantity = 1;
-            tempState.push(cartItem);
+            copiedCartItems.push(cartItem);
 
-            return { cartItems: tempState };
+            return { cartItems: copiedCartItems };
         });
         
     },
@@ -48,11 +48,12 @@ export const createCartSlice: StateCreator<CartStore> = (set) => ({
                 return state;
             }
 
-            let tempState = [...state.cartItems];
-            const findIndex = tempState.findIndex((item) => item.id === id);
+            let copiedCartItems = [...state.cartItems];
+            const findIndex = copiedCartItems.findIndex((item) => item.id === id);
             if(findIndex >= 0) {
-                const newProduct = tempState.splice(findIndex, 1);
-                return { cartItems: newProduct };
+                const newProduct = copiedCartItems.splice(findIndex, 1);
+                state.cartItems = newProduct;
+                // return { cartItems: newProduct };
             }
             return state;
         })
@@ -61,12 +62,13 @@ export const createCartSlice: StateCreator<CartStore> = (set) => ({
     incrementCart(id) {
         set((state) => {
 
-            let tempState = [...state.cartItems];
-            const findIndex = tempState.findIndex((item) => item.id === id);
+            let copiedCartItems = [...state.cartItems];
+            const findIndex = copiedCartItems.findIndex((item) => item.id === id);
 
             if(findIndex >= 0) {
-                tempState[findIndex].quantity += 1;
-                return {cartItems: tempState}
+                copiedCartItems[findIndex].quantity += 1;
+                state.cartItems = copiedCartItems;
+                // return {cartItems: copiedCartItems}
             }
 
             return state;
@@ -75,22 +77,22 @@ export const createCartSlice: StateCreator<CartStore> = (set) => ({
     decrementCart(id) {
         set((state) => {
 
-            let tempState = [...state.cartItems];
-            const findIndex = tempState.findIndex((item) => item.id === id);
+            let copiedCartItems = [...state.cartItems];
+            const findIndex = copiedCartItems.findIndex((item) => item.id === id);
 
             if(findIndex >= 0) {
 
-                if(tempState[findIndex].quantity === 0) {
-                    return { cartItems: tempState }
+                if(copiedCartItems[findIndex].quantity === 0) {
+                    return state;
                 }
 
-                tempState[findIndex].quantity -= 1;
-                return { cartItems: tempState };
+                copiedCartItems[findIndex].quantity -= 1;
+                state.cartItems = copiedCartItems;
             }
 
             return state;
         })
     },
 
-    resetCart: () => set({cartItems: []}),
+    resetCart: () => set({ cartItems: [] }),
 });

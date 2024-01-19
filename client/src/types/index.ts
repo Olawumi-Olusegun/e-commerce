@@ -14,6 +14,8 @@ export interface Product {
 }
 
 
+
+
 interface LinkProp extends LinkProps, PropsWithChildren {
     renderAs: "link";
   };
@@ -25,3 +27,5 @@ interface LinkProp extends LinkProps, PropsWithChildren {
   };
   
   export type ButtonProps = LinkProp | ButtonProp | AnchorProp;
+
+
