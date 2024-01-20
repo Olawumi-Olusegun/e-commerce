@@ -3,6 +3,7 @@ import { BsFillBagHeartFill } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import data from "../../db/data";
 import "./SingleProduct.css";
+import { ProductResponse } from "../../types";
 
 export default function SingleProduct() {
 
@@ -35,7 +36,7 @@ export default function SingleProduct() {
     event.preventDefault();
     
     try {
-      const response = await fetch(`/api/v2/`, {
+      const response = await fetch(`/api/v2/products/${productTitle}`, {
         method: "POST",
         body: JSON.stringify(productState),
         headers: {
@@ -43,15 +44,18 @@ export default function SingleProduct() {
         }
       });
 
-      const { message } = await response.json();
+      const { message, data } = await response.json() as ProductResponse;
 
-      if(!response.ok) {
+      if(!response.ok && message) {
         setResponseMessage(message)
       }
 
       navigation("/", { replace: true });
-    } catch (error) {
+      console.log(data);
+
+    } catch (error: any) {
       console.log(error);
+      return error;
     }
   }
 

@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from "react";
 import { LinkProps } from "react-router-dom";
 
 export interface Product {
+    id?: string;
     img: string;
     title:  string;
     star: React.ReactElement,
@@ -11,6 +12,12 @@ export interface Product {
     company:  string;
     color:  string;
     category:  string;
+}
+
+export interface ProductResponse {
+    // data: Pick<Product, "title" | "img" | "category" | "color" | "company" | "newPrice" | "prevPrice" | "reviews" >;
+    message: string;
+    data: Exclude<Product, "star">
 }
 
 
