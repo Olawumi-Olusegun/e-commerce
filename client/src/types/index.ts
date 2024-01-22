@@ -15,9 +15,8 @@ export interface Product {
 }
 
 export interface ProductResponse {
-    // data: Pick<Product, "title" | "img" | "category" | "color" | "company" | "newPrice" | "prevPrice" | "reviews" >;
     message: string;
-    data: Exclude<Product, "star">
+    data: Omit<Product, "star">
 }
 
 

@@ -85,3 +85,26 @@ export const fetchProductById = async (req: Request, res: Response, next: NextFu
         throw new Error("Unable to create new product")
     }
 }
+
+export const deleteProductById = async (req: Request, res: Response, next: NextFunction) => {
+        
+    const { productId } = req.body;
+
+    if(!isValidObjectId(productId)) {
+        return res.status(400).json({ success: false, message: "Invalid product ID"});
+    }
+
+    try {
+
+        const deletedProduct = await ProductModel.findByIdAndDelete(productId);
+
+        if(!deletedProduct) {
+            return res.status(400).json({ success: false, message: "Unable to delete product"});
+        }
+
+        return res.status(200).json({ success: true, message: "Product deleted"});
+    
+    } catch (error) {
+        return res.status(500).json({ success: false, message: "Unknown error while deleting product"});
+    }
+}
